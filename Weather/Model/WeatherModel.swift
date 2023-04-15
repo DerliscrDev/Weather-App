@@ -2,59 +2,27 @@
 //  WeatherModel.swift
 //  Weather
 //
-//  Created by Derlis Ramón Cañete Ríos on 2023-04-13.
+//  Created by Derlis Ramón Cañete Ríos on 2023-04-14.
 //
 
 import Foundation
 
-struct ResponseDataModel: Codable {
-    let coord: Coord
-    let weather: [Weather]
-    let base: String
-    let main: Main
-    let visibility: Int
-    let wind: Wind
-    let clouds: Clouds
-    let dt: Int
-    let sys: Sys
-    let timezone, id: Int
-    let name: String
-    let cod: Int
-}
-
-struct Clouds: Codable {
-    let all: Int
-}
-
-struct Coord: Codable {
-    let lon, lat: Double
-}
-
-struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity: Int
-
-    enum CodingKeys: String, CodingKey {
-        case temp
-        case feelsLike = "feels_like"
-        case tempMin = "temp_min"
-        case tempMax = "temp_max"
-        case pressure, humidity
-    }
-}
-
-struct Sys: Codable {
-    let type, id: Int
-    let country: String
-    let sunrise, sunset: Int
-}
-
-struct Weather: Codable {
-    let id: Int
-    let main, description, icon: String
-}
-
-struct Wind: Codable {
-    let speed: Double
-    let deg: Int
+struct WeatherModel {
+    let city: String
+    let weather: String
+    let description: String
+    let iconURL: URL?
+    let currentTemperature: String
+    let minTemperature: String
+    let maxTemperature: String
+    let humidity: String
+    
+    static let empty: WeatherModel = .init(city: "No city",
+                                           weather: "No weather",
+                                           description: "No description",
+                                           iconURL: nil,
+                                           currentTemperature: "0º",
+                                           minTemperature: "0º Min.",
+                                           maxTemperature: "0º Máx.",
+                                           humidity: "0%")
 }
